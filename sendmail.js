@@ -1,8 +1,8 @@
 const sendGridMail = require('@sendgrid/mail')
-const apiKey = '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'
+const apiKey = process.env.SENDGRID_API_KEY
 sendGridMail.setApiKey(apiKey)
 
-const sendMessage = (from_address, to_address, subject, text) => {
+const sendMessage = (to_address, subject, text) => {
     const message = {
         'from': 'chejerlakarthik@gmail.com',
         'to': to_address,
@@ -10,7 +10,7 @@ const sendMessage = (from_address, to_address, subject, text) => {
         'text': text
     }
 
-    console.log(`Sending email from ${from_address} to ${to_address}`)
+    console.log(`Sending email...`)
     sendGridMail.send(message)
                 .then((result) => {
                     //Celebrate
@@ -25,6 +25,7 @@ const sendMessage = (from_address, to_address, subject, text) => {
                     //Extract response msg
                     const { headers, body } = response;
                 });
+    return message
 }
 
 module.exports.emailService = {
