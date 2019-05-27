@@ -12,8 +12,13 @@ app.post("/", (req, res) => {
     const to_address = req.body['to']
     const subject = req.body['subject']
     const content = req.body['content']
-    const message = service.sendMessage(to_address, subject, content)
-    res.send(message)
+    const message = service.sendMessage(to_address, subject, content);
+    res.send({
+        'FROM' : message.from,
+        'TO': message.to,
+        'MESSAGE_TEXT': message.text,
+        'SUBJECT': message.subject
+    })
 })
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`))

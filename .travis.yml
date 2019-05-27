@@ -4,6 +4,3 @@ services:
 
 before_install:
   - docker build -t chejerlakarthik/notification-service .
-
-script:
-  - docker run -p 3000:3000 chejerlakarthik/notification-service npm start

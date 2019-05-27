@@ -14,12 +14,11 @@ const sendMessage = (to_address, subject, text) => {
     sendGridMail.send(message)
                 .then((result) => {
                     //Celebrate
-                    console.log("Success " + Object.keys(result))
-                    console.log(result[0]['statusCode'])
+                    console.log("Success");
                 })
                 .catch(error => {
                     //Log friendly error
-                    console.error(error.toString());
+                    console.error(`Error occurred: ${error.toString()}`);
                     //Extract error msg
                     const { message, code, response } = error;
                     //Extract response msg
